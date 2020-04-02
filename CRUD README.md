@@ -12,6 +12,7 @@
 ## Create
 
 > Method: POST
+
 > Route: '/api/CRUD/:id'
 
 Creates a new entry in the db
@@ -27,6 +28,7 @@ Response: Status Code 200
 ## Read
 
 > Method:GET
+
 > Route: '/api/CRUD/:id'
 
 Retrieves entry by specified id
@@ -38,6 +40,7 @@ Response: requested data from db in JSON format
 ## Update
 
 > Method: PATCH
+
 > Route: '/api/CRUD/:id'
 
 Updates entry by specified id
@@ -53,6 +56,7 @@ Response: Status Code 200
 ## Delete
 
 > Method: DELETE
+
 > Route: '/api/CRUD/:id'
 
 Deletes entry by specified id
