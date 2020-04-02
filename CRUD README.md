@@ -12,7 +12,7 @@
 ## Create
 
 > POST, '/api/CRUD/:id'
-> Creates a new entry in the db
+Creates a new entry in the db
 
 Assumes req.body is in JSON format and of the format:
 * id: integer
@@ -25,7 +25,7 @@ Response: Status Code 200
 ## Read
 
 > GET, '/api/CRUD/:id'
-> retrieves entry by specified id
+Retrieves entry by specified id
 
 Requires a param of id
 
@@ -34,7 +34,7 @@ Response: requested data from db in JSON format
 ## Update
 
 > PATCH, '/api/CRUD/:id'
-> updates entry by specified id
+Updates entry by specified id
 
 Assumes req.body is in JSON format and of the format:
 * id: integer
@@ -47,7 +47,7 @@ Response: Status Code 200
 ## Delete
 
 > DELETE, '/api/CRUD/:id'
-> deletes entry by specified id
+Deletes entry by specified id
 
 Requires a param of id
 
