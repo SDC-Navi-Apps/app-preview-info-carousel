@@ -24,7 +24,8 @@ Response: Status Code 200
 
 ## Read
 
-> GET, '/api/CRUD/:id'
+> Method: GET
+> Route: '/api/CRUD/:id'
 Retrieves entry by specified id
 
 Requires a param of id
@@ -33,7 +34,7 @@ Response: requested data from db in JSON format
 
 ## Update
 
-> PATCH, '/api/CRUD/:id'
+> PUT, '/api/CRUD/:id'
 Updates entry by specified id
 
 Assumes req.body is in JSON format and of the format:

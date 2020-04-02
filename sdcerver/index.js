@@ -45,7 +45,7 @@ app.get('/api/CRUD/:id', (req, res) => {
   })
 });
 
-app.patch('/api/CRUD/:id', (req, res) => {
+app.put('/api/CRUD/:id', (req, res) => {
   // console.log(req);
   var options = {
     id: req.body.id,

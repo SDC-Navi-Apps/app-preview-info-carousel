@@ -26,7 +26,20 @@ app.get('/carousels/:id', (req, res) => {
     }
     res.json(results)
   })
-})
+});
+
+app.post('/api/CRUD/Create/:id', (req, res) => {
+
+});
+
+app.get('/api/CRUD/Read/:id', (req, res) => {
+  Carousels.find({id: req.params.id}, (err, results) => {
+    if (err) {
+      return console.log('error getting from db: ', err)
+    }
+    res.json(results)
+  })
+});
 
 
 
