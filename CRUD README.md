@@ -11,7 +11,10 @@
 
 ## Create
 
-> POST, '/api/CRUD/:id'
+> Method: POST
+
+> Route: '/api/CRUD/:id'
+
 Creates a new entry in the db
 
 Assumes req.body is in JSON format and of the format:
@@ -24,8 +27,10 @@ Response: Status Code 200
 
 ## Read
 
-> Method: GET
+> Method:GET
+
 > Route: '/api/CRUD/:id'
+
 Retrieves entry by specified id
 
 Requires a param of id
@@ -34,7 +39,10 @@ Response: requested data from db in JSON format
 
 ## Update
 
-> PUT, '/api/CRUD/:id'
+> Method: PUT
+
+> Route: '/api/CRUD/:id'
+
 Updates entry by specified id
 
 Assumes req.body is in JSON format and of the format:
@@ -47,7 +55,10 @@ Response: Status Code 200
 
 ## Delete
 
-> DELETE, '/api/CRUD/:id'
+> Method: DELETE
+
+> Route: '/api/CRUD/:id'
+
 Deletes entry by specified id
 
 Requires a param of id
