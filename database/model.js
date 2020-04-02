@@ -23,7 +23,7 @@ function findOne(id, callback) {
 
 // insertOne inserts one appImages schema into db
 function insertOne(schema, callback) {
-  Carousels.create(schema, callback);
+  Carousels.insert(schema, callback);
 }
 
 // Fetch apps by id from database
@@ -31,9 +31,26 @@ function getApps(id, callback) {
   Carousels.find({ "by.id": id }, callback);
 }
 
+// Updates one appImages
+// function updateOne(options, callback) {
+//   Carousels.updateOne(options, callback);
+// }
+
+// Removes an entry
+function removeOne(id, callback) {
+  Carousels.deleteOne({id: id}, callback);
+}
+
+// Find last entry id
+function findLast(callback) {
+  Carousels.find({}, callback).sort({id: -1}).limit(1);
+}
+
 
 exports.findOne = findOne;
 exports.findAll = findAll;
-exports.insertOne = insertOne;
+module.insertOne = insertOne;
+exports.removeOne = removeOne;
+exports.findLast = findLast;
 exports.Carousels = Carousels;
 module.exports = Carousels;
