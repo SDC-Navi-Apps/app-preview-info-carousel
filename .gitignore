@@ -9,4 +9,8 @@ node_modules/
 #Compilations
 bundle.js
 
+# Data files
+data.csv
+data2.csv
+
 
