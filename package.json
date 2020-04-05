@@ -24,6 +24,8 @@
     "bootstrap": "^4.4.1",
     "eslint": "^6.8.0",
     "express": "^4.16.4",
+    "faker": "^4.1.0",
+    "fast-lorem-ipsum": "^1.2.0",
     "fs": "0.0.1-security",
     "https": "^1.0.0",
     "lorem-ipsum": "^2.0.3",

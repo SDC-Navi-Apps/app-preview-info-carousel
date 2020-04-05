@@ -1,19 +1,12 @@
-const LoremIpsum = require('lorem-ipsum').LoremIpsum;
+const fastLorem = require('fast-lorem-ipsum');
+const faker = require('faker');
 const fs = require('fs');
 
-const writeCSV = fs.createWriteStream('data2.csv');
-writeCSV.write('id,description,body,images\n', 'utf8');
+const writeCSV = fs.createWriteStream('data.csv');
+writeCSV.write('id|description|body|images|createdAt|updatedAt\n', 'utf8');
 
-const lorem = new LoremIpsum({
-  sentencesPerParagraph: {
-    max: 8,
-    min: 4
-  },
-  wordsPerSentence: {
-    max: 10,
-    min: 4
-  }
-});
+// var date = Date.now();
+
 
 function destroyCPU(writer, encoding, callback) {
   var endpoint = 10000000;
@@ -29,22 +22,24 @@ function destroyCPU(writer, encoding, callback) {
       if (i % 100000 === 0) {
         console.log(`${i/100000}%`)
       }
-      var sentenceNumber = Math.round(Math.random() * 2) + 4;
-      var description = lorem.generateSentences(sentenceNumber);
-      var paragraphNumber = Math.round(Math.random() * 4) + 2;
-      var body = lorem.generateParagraphs(paragraphNumber);
+      var sentenceNumber = Math.round(Math.random() * 44) + 16;
+      var description = fastLorem(sentenceNumber, 'w');
+      var paragraphNumber = Math.round(Math.random() * 600) + 100;
+      var body = fastLorem(paragraphNumber, 'w');
       var imageNumber = Math.round(Math.random() * 9) + 1;
       var images = '';
       for (var k = 0; k < imageNumber; k++) {
         if (k === 0) {
-          images += `[${Math.round(Math.random() * 1000)},`;
+          images += `{${Math.round(Math.random() * 1000)},`;
         } if (k === imageNumber - 1) {
-          images += `${Math.round(Math.random() * 1000)}]`
+          images += `${Math.round(Math.random() * 1000)}}`
         } else {
           images += `${Math.round(Math.random() * 1000)},`;
         }
       }
-      var line = `${id},  ${description},  ${body},  ${images}\n`;
+      var createdAt = faker.date.past().toISOString();
+      var updatedAt = faker.date.recent().toISOString();
+      var line = `${id}|${description}|${body}|${images}|${createdAt}|${updatedAt}\n`;
       // console.log(line);
       if (i === 0) {
         writer.write(line, encoding, callback);

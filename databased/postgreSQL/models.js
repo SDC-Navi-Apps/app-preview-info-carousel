@@ -1,4 +1,7 @@
-const sequelize = new Sequelize('appimages', 'admin', 'PaSsWoRd!', {
+const Sequelize = require('sequelize');
+const Model = Sequelize.Model;
+
+const sequelize = new Sequelize('appimages', 'jakedunnicliff', '', {
   host: 'localhost',
   dialect: 'postgres'
 });
@@ -10,7 +13,7 @@ Application.init({
     primaryKey: true
   },
   description: {
-    type: Sequelize.STRING(255),
+    type: Sequelize.TEXT,
     allowNull: false
   },
   body: {
@@ -18,9 +21,29 @@ Application.init({
     allowNull: true
   },
   images: {
-    type: Sequelize.ARRAY(Sequelize.TEXT)
+    type: Sequelize.ARRAY(Sequelize.INTEGER)
   }
-});
+}, {sequelize, modelName: 'application'});
+
+
+
+// sequelize.define('Application', {
+//   id: {
+//     type: Sequelize.INTEGER,
+//     primaryKey: true
+//   },
+//   description: {
+//     type: Sequelize.STRING(255),
+//     allowNull: false
+//   },
+//   body: {
+//     type: Sequelize.TEXT,
+//     allowNull: true
+//   },
+//   images: {
+//     type: Sequelize.ARRAY(Sequelize.TEXT)
+//   }
+// })
 
 // class AppImages extends Model {}
 // AppImages.init({
@@ -70,7 +93,10 @@ Application.init({
 //   }
 // });
 
-// AppImages.belongsTo(Application, {foreignKey: 'image_id', targetKey: 'id'});
 
-module.exports.Application = Application;
+Application.sync({force: true});
+
+// AppImages.belongsTo(Application, {foreignKey: 'image_id', targetKey: 'id'});
+// Application.create();
+// module.exports.Application = Application;
 // module.exports.AppImages = AppImages;
