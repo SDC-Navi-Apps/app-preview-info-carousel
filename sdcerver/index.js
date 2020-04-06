@@ -1,9 +1,19 @@
-require('dotenv').config();
+// require('dotenv').config();
 const express = require('express');
 const path = require('path');
-const Carousels = require('../database/model.js');
+// const { Client } = require('pg');
+var connectionString = 'postgres://postgres:admin@PaSsWoRd!:5432/appimages';
+const Applications = require('../databased/postgreSQL/models.js').Applications;
+const sequelize = require('sequelize');
 const bodyParser = require('body-parser');
 const db = require('../database/index.js');
+
+// Applications.connect();
+// const client = new Client({
+//   connectionString: connectionString
+// })
+
+// Applications.connect();
 const app = express();
 const PORT =  3003;
 
@@ -17,19 +27,21 @@ app.use(function(req, res, next) {
 
 app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.post('/api/CRUD/:id', (req, res) => {
   // console.log(req.body)
   var options = {
     id: req.body.id,
-    app_description: req.body.app_description,
-    additional_text: req.body.additional_text,
-    images: req.body.images
+    description: req.body.app_description,
+    body: req.body.additional_text,
+    images: req.body.images,
+    createdAt: Date.now().toISOString(),
+    updatedAt: Date.now().toISOString()
   };
 
-  Carousels.create(options, (err, results) => {
+  Applications.create(options, (err, results) => {
     if (err) {
       return console.log('error creating document: ', err)
     }
@@ -38,11 +50,14 @@ app.post('/api/CRUD/:id', (req, res) => {
 });
 
 app.get('/api/CRUD/:id', (req, res) => {
-  Carousels.findOne({id: req.params.id}, (err, results) => {
+  // res.sendStatus(200);
+  Applications.findAll({where:{id: req.params.id}}, (err, results) => {
     if (err) {
+      // res,sendStatus(404);
       return console.log('error getting from db: ', err)
     }
-    res.json(results)
+    // res.sendStatus(200);
+    res.json(results);
   })
 });
 
@@ -55,7 +70,7 @@ app.put('/api/CRUD/:id', (req, res) => {
     images: req.body.images
   };
   // console.log(options);
-  Carousels.updateOne({id: req.body.id}, options, (err, results) => {
+  Applications.updateOne({id: req.body.id}, options, (err, results) => {
     if (err) {
       return console.log(`error updating id-${options.id}: `, err)
     }
@@ -64,7 +79,7 @@ app.put('/api/CRUD/:id', (req, res) => {
 });
 
 app.delete('/api/CRUD/:id', (req, res) => {
-  Carousels.deleteOne({id: req.params.id}, (err, results) => {
+  Applications.deleteOne({id: req.params.id}, (err, results) => {
     if (err) {
       return console.log(`error deleting id-${req.params.id}: `, err)
     }

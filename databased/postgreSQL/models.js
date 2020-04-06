@@ -6,8 +6,8 @@ const sequelize = new Sequelize('appimages', 'jakedunnicliff', '', {
   dialect: 'postgres'
 });
 
-class Application extends Model {}
-Application.init({
+class Applications extends Model {}
+Applications.init({
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true
@@ -23,7 +23,7 @@ Application.init({
   images: {
     type: Sequelize.ARRAY(Sequelize.INTEGER)
   }
-}, {sequelize, modelName: 'application'});
+}, {sequelize, modelName: 'applications'});
 
 
 
@@ -94,9 +94,9 @@ Application.init({
 // });
 
 
-Application.sync({force: true});
+Applications.sync();
 
 // AppImages.belongsTo(Application, {foreignKey: 'image_id', targetKey: 'id'});
 // Application.create();
-// module.exports.Application = Application;
+module.exports.Applications = Applications;
 // module.exports.AppImages = AppImages;
