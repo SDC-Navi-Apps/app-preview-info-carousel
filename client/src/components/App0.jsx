@@ -20,26 +20,25 @@ class App0 extends React.Component {
       readMore: 'READ MORE'
     };
     this.toggleAdditionalText = this.toggleAdditionalText.bind(this);
+    this.id = location.pathname.split('/')[1];
 
   }
 
   componentDidMount = () => {
-   axios.get(`http://localhost:3003/carousels/${this.props.id}`)
+   axios.get(`http://localhost:3003/api/CRUD/${this.id}`)
    .then((data) => {
+     console.log(data);
     this.setState({
-      current: data.data[0],
-      description: data.data[0].app_description,
+      current: data.data,
+      description: data.data.description,
       features: '',
-      lines: (data.data[0].additional_text).split('\n'),
+      lines: (data.data.body).split('\n'),
       additionalText1: '',
       additionalText2: '',
       additionalText3: '',
       additionalText4: ''
     })
    })
-  .then( () => (
-    console.log('get req successful', this.state.current)
-  ))
   .catch(err => console.log(err));
   }
 
@@ -68,13 +67,13 @@ class App0 extends React.Component {
   render() {
     return (
       <div className="carouselContents">
-      <ImageCarousel id={this.props.id}/>
+      <ImageCarousel id={this.id}/>
       <div className="container-carousel-service">
       <p className="description-text" style={{marginTop: '5px'}}>{this.state.description} </p>
 
 
 
-      <Collapsible  id="readmore" transitionTime='280'
+      <Collapsible  id="readmore" transitionTime={280}
       dataPlacement="top" className="comet-popover--top-left-aligned" trigger=<strong style={{
         display: 'grid',
         cursor: 'pointer',

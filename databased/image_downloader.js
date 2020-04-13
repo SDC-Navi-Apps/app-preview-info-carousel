@@ -3,8 +3,8 @@ var https = require('https');
 var Promise = require('bluebird');
 
 const streamToFile = (i) => {
-  var url = `https://i.picsum.photos/id/${i}/200/300.jpg`;
-  var path = `./images/${i}.jpg`;
+  var url = `https://i.picsum.photos/id/${i}/300/300.jpg`;
+  var path = FULL_PATH;
   return new Promise((resolve, reject) => {
     const file = fs.createWriteStream(path)
     https.get(url, (response) => {response.pipe(file)})
@@ -15,12 +15,12 @@ const streamToFile = (i) => {
 
 
 var massDownload = function(i) {
-  for (var j = (i + 1); j <= (i + 500); j++) {
+  for (var j = (i); j <= (i + 100); j++) {
     streamToFile(j)
   }
 };
 
-massDownload(0);
+massDownload(1001);
 
 
 

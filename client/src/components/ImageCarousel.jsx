@@ -16,6 +16,7 @@ export default class ImageCarousel extends React.Component {
     }
 
     this.changeActiveItem = this.changeActiveItem.bind(this)
+    this.id = location.pathname.split('/')[1];
   }
 
 
@@ -26,10 +27,16 @@ export default class ImageCarousel extends React.Component {
 //   //   }).catch(err => console.log(err));
 // }
 
-  UNSAFE_componentWillMount() {
-    axios.get(`http://localhost:3003/carousels/${this.props.id}`).then((data) => {
+  componentDidMount() {
+    console.log(this.id);
+    axios.get(`http://localhost:3003/api/CRUD/${this.id}`).then((data) => {
+      var img = data.data.images;
+      for (var i = 0; i < data.data.images.length; i++) {
+        img[i] = `https://sdc-carousel.s3-us-west-1.amazonaws.com/img/${img[i]}.jpg`
+      }
+      // console.log(img);
       this.setState({
-        items: data.data[0].images,
+        items: img,
         activeItemIndex: 0
       })
       }).catch(err => console.log(err));

@@ -28,16 +28,60 @@ app.get('/carousels/:id', (req, res) => {
   })
 });
 
-app.post('/api/CRUD/Create/:id', (req, res) => {
+app.post('/api/CRUD/:id', (req, res) => {
+  // console.log(req.body)
+  var options = {
+    id: req.body.id,
+    description: req.body.app_description,
+    body: req.body.additional_text,
+    images: req.body.images,
+    createdAt: Date.now().toISOString(),
+    updatedAt: Date.now().toISOString()
+  };
 
+  Carousels.create(options, (err, results) => {
+    if (err) {
+      return console.log('error creating document: ', err)
+    }
+    res.json(results);
+  })
 });
 
-app.get('/api/CRUD/Read/:id', (req, res) => {
-  Carousels.find({id: req.params.id}, (err, results) => {
+app.get('/api/CRUD/:id', (req, res) => {
+  // res.sendStatus(200);
+  Carousels.findAll({where:{id: req.params.id}}, (err, results) => {
     if (err) {
+      // res,sendStatus(404);
       return console.log('error getting from db: ', err)
     }
-    res.json(results)
+    // res.sendStatus(200);
+    res.json(results);
+  })
+});
+
+app.put('/api/CRUD/:id', (req, res) => {
+  // console.log(req);
+  var options = {
+    id: req.body.id,
+    app_description: req.body.app_description,
+    additional_text: req.body.additional_text,
+    images: req.body.images
+  };
+  // console.log(options);
+  Carousels.updateOne({id: req.body.id}, options, (err, results) => {
+    if (err) {
+      return console.log(`error updating id-${options.id}: `, err)
+    }
+    res.sendStatus(200);
+  })
+});
+
+app.delete('/api/CRUD/:id', (req, res) => {
+  Carousels.deleteOne({id: req.params.id}, (err, results) => {
+    if (err) {
+      return console.log(`error deleting id-${req.params.id}: `, err)
+    }
+    res.sendStatus(200);
   })
 });
 

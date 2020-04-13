@@ -2,14 +2,14 @@ const fastLorem = require('fast-lorem-ipsum');
 const faker = require('faker');
 const fs = require('fs');
 
-const writeCSV = fs.createWriteStream('data.csv');
+const writeCSV = fs.createWriteStream('data3.csv');
 writeCSV.write('id|description|body|images|createdAt|updatedAt\n', 'utf8');
 
 // var date = Date.now();
 
 
 function destroyCPU(writer, encoding, callback) {
-  var endpoint = 10000000;
+  var endpoint = 1;
   var i = 0;
 
   function createEntry() {
@@ -19,8 +19,8 @@ function destroyCPU(writer, encoding, callback) {
       var id = i;
       endpoint--;
       i++;
-      if (i % 100000 === 0) {
-        console.log(`${i/100000}%`)
+      if (i % 1 === 0) {
+        console.log(`${i/1}%`)
       }
       var sentenceNumber = Math.round(Math.random() * 44) + 16;
       var description = fastLorem(sentenceNumber, 'w');
