@@ -2,7 +2,7 @@ const fastLorem = require('fast-lorem-ipsum');
 const faker = require('faker');
 const fs = require('fs');
 
-const writeCSV = fs.createWriteStream('data.csv');
+const writeCSV = fs.createWriteStream('data1.csv');
 writeCSV.write('id|description|body|images|createdAt|updatedAt\n', 'utf8');
 
 // var date = Date.now();
@@ -22,12 +22,12 @@ function destroyCPU(writer, encoding, callback) {
       if (i % 100000 === 0) {
         console.log(`${i/100000}%`)
       }
-      var sentenceNumber = Math.round(Math.random() * 44) + 16;
-      var description = fastLorem(sentenceNumber, 'w');
+      var sentenceNumber = Math.round(Math.random() * 2) + 4;
+      var description = faker.lorem.paragraph(sentenceNumber);
       var paragraphNumber = Math.round(Math.random() * 2) + 2;
       var body = '';
       for (var k = 0; k < paragraphNumber; k++) {
-        body += `${faker.lorem.paragraph(6, false)}\n`;
+        body += `${faker.lorem.paragraph(6)}\n`;
       }
       var imageNumber = Math.round(Math.random() * 9) + 1;
       var images = '';

@@ -3,23 +3,5 @@ npm
 npm-debug.log
 node_modules/
 
-## MAC files ##
-.DS_Store
-
-#Compilations
-bundle.js
-
-# Data files
-data.csv
-data2.csv
-data3.csv
-
-# newrelic
-newrelic_agent.log
-
 #package-lock
 package-lock.json
-
-database
-
-server
