@@ -13,13 +13,11 @@ bundle.js
 data.csv
 data2.csv
 data3.csv
+data8.csv
+image_downloader.js
 
 # newrelic
 newrelic_agent.log
 
 #package-lock
 package-lock.json
-
-database
-
-server
