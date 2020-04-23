@@ -21,3 +21,4 @@ newrelic_agent.log
 
 #package-lock
 package-lock.json
+newrelic.js

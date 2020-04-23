@@ -4,10 +4,9 @@
 
 ## Related Projects
 
-  - https://github.com/FEC-Group-Link/app-info-logistics-component
-  - https://github.com/FEC-Group-Link/searchbar-similar.git
-  - https://github.com/FEC-Group-Link/review-component
-  - https://github.com/teamName/repo
+  - [Service](https://github.com/SDC-Navi-Apps/app-preview-service)
+  - [Proxy](https://github.com/SDC-Navi-Apps/Google-Apps--Carousel-Proxy)
+  - [Project Repo](https://github.com/SDC-Navi-Apps)
 
 ## Table of Contents
 
@@ -23,13 +22,6 @@
     "db:setup": "node database/seed.js",
     "test": "jest"
   },
-
-## Requirements
-
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
-
-- Node 6.13.0
-- etc
 
 ## Development
 

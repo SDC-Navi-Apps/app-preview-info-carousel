@@ -27,7 +27,7 @@ function destroyCPU(writer, encoding, callback) {
       var paragraphNumber = Math.round(Math.random() * 2) + 2;
       var body = '';
       for (var k = 0; k < paragraphNumber; k++) {
-        body += `${faker.lorem.paragraph(6, false)}\n`;
+        body += `${faker.lorem.paragraph(6, false)}&#92n`;
       }
       var imageNumber = Math.round(Math.random() * 9) + 1;
       var images = '';
